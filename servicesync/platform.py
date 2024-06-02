@@ -77,3 +77,8 @@ class Platform:
             component.location = match.get('url')
             if not component.url:
                 raise errors.NoComponentLocationDefined()
+            
+    def fetch_components(self, repo_path, ssh_pub_key, ssh_priv_key):
+        workspace = path.join(repo_path, self.name)
+        for component in self._components:
+            component.fetch(workspace, ssh_pub_key, ssh_priv_key)
