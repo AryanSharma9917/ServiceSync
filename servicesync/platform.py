@@ -39,3 +39,41 @@ class Platform:
                                 url=component.get('url'),
                             )
                         )
+    def __repr__(self):
+        return self.version
+
+    def __eq__(self, version):
+        return self.version == version
+
+    def update_components(self, vers_config):
+        self.version = vers_config.get('version')
+        if not self.version:
+            raise errors.NoVersionFoundError(
+                """No platform version was defined in config file"""
+            )
+
+        vers_components = vers_config.get('components')
+        if not vers_components:
+            raise errors.NoComponentsDefinedError(
+                f"""No components are defined for {self.version}"""
+            )
+
+        for component in self._components:
+            match = next((c for c in vers_components if c.get('alias') == component), None)
+            if not match:
+                raise errors.ComponentUndefinedError(
+                    f"""Component '{component['name']}' does not have a 
+                    defined alias in config.yaml"""
+                 )
+
+            component.refs = match.get('refs')
+            if not component.refs:
+                raise errors.ComponentTagUndefinedError()
+
+            component.hash = match.get('hash')
+            if not component.hash:
+                raise errors.ComponentRefsUndefinedError()
+            
+            component.location = match.get('url')
+            if not component.url:
+                raise errors.NoComponentLocationDefined()
