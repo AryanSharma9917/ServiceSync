@@ -60,3 +60,32 @@ def get_versions_paths(workspace_path, version):
 
     return list(map(lambda p: path.join(vers_path, p), versions))
 
+def filter_version(version, workspace):
+    """Creates a new list of Platform objects that contain the YAML config for
+    the desired 
+    :param version: string the version to search for
+    :param workspace: string full path to the workspace.
+    :return platforms: 
+    """
+    platform = Platform(workspace)
+    yaml_files = get_versions_paths(workspace, version)
+    contents = list(open_file(f) for f in yaml_files)
+
+    platforms = []
+    match_vers = re.compile(version)
+    for platform_version in [content for content in contents]:
+        for vers in [v for v in platform_version]:
+            # NOTE: this is where the filtering for the specific version can be
+            # done, after we parsed all the major version files.
+            if not (match_vers.match(vers['version'])):
+                continue
+            platform_copy = copy.deepcopy(platform)
+            platform_copy.update_components(vers)
+            platforms.append(platform_copy)
+
+    if len(platforms) == 0:
+        raise errors.NoVersionFoundError(
+            f"""Version {version} was not found in {workspace}"""
+        )
+
+    return platforms
