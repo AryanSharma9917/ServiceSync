@@ -95,7 +95,7 @@ def tabulate_data(data, headers, table_type='fancy_grid'):
 
 def create_workspace(components_workspace, name):
     """Creates a temporary workspace for a component to be cloned to, if  
-    HURD_ARTIFACTS was not exported and no --path passed.
+    servicesync_ARTIFACTS was not exported and no --path passed.
     """
     workspace = path.join(components_workspace, name)
     try:
