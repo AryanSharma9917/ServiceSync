@@ -72,7 +72,7 @@ Describing a specific platform version:
 Assuming the configuration from the [platform-test repo](https://github.com/codeflavor/platform-test).
 
 ```bash
-$ HURD_WORKSPACE=~/projects/misc/platform-test/ python hurd.py describe -v v1.0.1
+$ servicesync_WORKSPACE=~/projects/misc/platform-test/ python servicesync.py describe -v v1.0.1
 ╒════════════════════╤═════════╤═════════════════════════════════════╤══════════════════╤══════════════════════════════════════════╕
 │ Platform version   │ Alias   │ URL                                 │ Refs             │ Hash                                     │
 ╞════════════════════╪═════════╪═════════════════════════════════════╪══════════════════╪══════════════════════════════════════════╡
@@ -87,7 +87,7 @@ $ HURD_WORKSPACE=~/projects/misc/platform-test/ python hurd.py describe -v v1.0.
 Describing all minor/patch versions:
 
 ```bash
-$ HURD_WORKSPACE=~/projects/misc/platform-test/ python hurd.py describe -v v1.0
+$ servicesync_WORKSPACE=~/projects/misc/platform-test/ python servicesync.py describe -v v1.0
 ╒════════════════════╤═════════╤═════════════════════════════════════╤══════════════════╤══════════════════════════════════════════╕
 │ Platform version   │ Alias   │ URL                                 │ Refs             │ Hash                                     │
 ╞════════════════════╪═════════╪═════════════════════════════════════╪══════════════════╪══════════════════════════════════════════╡
