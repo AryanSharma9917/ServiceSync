@@ -20,7 +20,7 @@ def open_file(config_file):
         raise errors.NoConfigFileFound(
             f"""No 'config.yaml' file found in directory!"""
         )
-    
+
 def get_versions_paths(workspace_path, version):
     """Walks the specified directory where the platform versioning is located
     and will try to find all the directories that match a regex of v[0-9]+.
@@ -89,3 +89,20 @@ def filter_version(version, workspace):
         )
 
     return platforms
+
+def tabulate_data(data, headers, table_type='fancy_grid'):
+    print(tabulate(data, headers, tablefmt=table_type))
+
+def create_workspace(components_workspace, name):
+    """Creates a temporary workspace for a component to be cloned to, if  
+    HURD_ARTIFACTS was not exported and no --path passed.
+    """
+    workspace = path.join(components_workspace, name)
+    try:
+        makedirs(workspace, mode=0o755, exist_ok=False)
+    except OSError as err:
+        raise errors.CannotCreateDirectory(
+            f"""Cannot create temporary directory: {err}"""
+        )
+
+    return workspace
