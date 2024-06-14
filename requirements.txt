@@ -1,0 +1,15 @@
+astroid==2.4.2
+autopep8==1.5.4
+cffi==1.14.2
+Click==7.1.2
+isort==5.5.0
+lazy-object-proxy==1.5.1
+mccabe==0.6.1
+pycodestyle==2.6.0
+pycparser==2.20
+pygit2==1.2.1
+pylint==2.6.0
+PyYAML==5.3.1
+six==1.15.0
+tabulate==0.8.7
+wrapt==1.12.1
