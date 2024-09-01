@@ -7,7 +7,7 @@ version.
 Usually, git submodules would be used to pin each microservice version in place
 to the platform version.  
 
-**NOTE**: This documentation is a _"work in progress"_.
+**NOTE**: This documentation is a "work in progress".
 
 #### Example
 Let's call our e-commerce platform `ecom` which is comprised of the following
