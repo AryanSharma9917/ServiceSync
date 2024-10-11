@@ -17,9 +17,9 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: Install dependencies  # Updated section
       run: |
-        apt-get install libgit2-dev -y
+        sudo apt-get install libgit2-dev -y
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Lint with flake8
@@ -27,7 +27,7 @@ jobs:
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest  # Update this section
+    - name: Test with pytest
       run: |
         pip install pytest
-        pytest -v  # Added verbosity flag here
+        pytest -v
