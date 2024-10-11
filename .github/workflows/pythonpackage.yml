@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -13,21 +12,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies  # Updated section
+
+    - name: Install dependencies
       run: |
         sudo apt-get install libgit2-dev -y
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r requirements.txt  # Ensure pytest is included in requirements.txt
+
     - name: Lint with flake8
       run: |
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Test with pytest
       run: |
-        pip install pytest
-        pytest -v
+        pip install pytest  # This can be omitted if pytest is in requirements.txt
+        pytest -v  # Run pytest with verbose output
