@@ -4,13 +4,13 @@ cffi==1.14.2
 Click==7.1.2
 isort==5.5.0
 lazy-object-proxy==1.4.3
-mccabe==0.7.0              # ✅ Updated
-pycodestyle==2.12.0        # ✅ Updated
+mccabe==0.6.1              # Downgraded
+pycodestyle==2.12.0        # Updated
 pycparser==2.20
 pylint==2.6.0
 PyYAML==5.3.1
 six==1.15.0
 tabulate==0.8.7
 wrapt==1.12.1
-flake8==7.1.1              # ✅ Added
-pytest                    # ✅ Added if you use pytest
+flake8==7.1.1              # Added
+pytest                    # Added pytest
