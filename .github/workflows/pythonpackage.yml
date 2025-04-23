@@ -8,13 +8,13 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7]
+        python-version: [3.10 , 3.11]  #Using [3.10, 3.11] to test multiple versions
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -22,7 +22,7 @@ jobs:
       run: |
         sudo apt-get install libgit2-dev -y
         python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Ensure pytest is included in requirements.txt
+        pip install -r requirements.txt
 
     - name: Lint with flake8
       run: |
@@ -32,5 +32,5 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pip install pytest  # This can be omitted if pytest is in requirements.txt
-        pytest -v  # Run pytest with verbose output
+        pip install pytest
+        pytest -v
