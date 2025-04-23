@@ -8,7 +8,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.10 , 3.11]  #Using [3.10, 3.11] to test multiple versions
+        python-version: [3.10, 3.11]  # Fixed versions
 
     steps:
     - uses: actions/checkout@v3
@@ -31,6 +31,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Test with pytest
-      run: |
+      run: 
         pip install pytest
         pytest -v
